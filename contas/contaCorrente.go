@@ -1,19 +1,16 @@
 package contas
 
 import (
-	"fmt"
-
 	"go_bank/clientes"
 )
 
 type ContaCorrente struct {
-	Titular          clientes.Titular
-	NumeroAgencia    int
-	NumeroConta      int
-	saldo            float64
+	Titular                    clientes.Titular
+	NumeroAgencia, NumeroConta int
+	saldo                      float64
 }
 
-func (c *ContaCorrente) sacar(valorSaque float64) string {
+func (c *ContaCorrente) Sacar(valorSaque float64) string {
 	podeSacar := valorSaque > 0 && valorSaque <= c.saldo
 	if podeSacar {
 		c.saldo -= valorSaque
@@ -31,9 +28,6 @@ func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) {
 		return "O valor do deposito eh menor do que zerp", c.saldo
 	}
 
-}
-func main() {
-	fmt.Println("Ola")
 }
 
 func (c *ContaCorrente) Transferir(valorDaTransferencia float64, contaDestino *ContaCorrente) bool {
